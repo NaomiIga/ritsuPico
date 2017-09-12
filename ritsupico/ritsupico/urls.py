@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 admin.autodiscover()
 from django.conf import settings
-from cms import views
+#from cms import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
