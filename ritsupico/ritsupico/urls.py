@@ -31,6 +31,6 @@ urlpatterns = [
     url(r'^finish', views.finish, name="finish"),
     url(r'^key_get', views.key_get, name="key_get"),
     url(r'^recover_check', views.recover_check, name="recover_check"),
-    url(r'^recover_data', views.recover_data, name="recover_data"),
+    #url(r'^recover_data', views.recover_data, name="recover_data"),
     url(r'^recover_data2', views.recover_data2, name="recover_data2")
 ]
