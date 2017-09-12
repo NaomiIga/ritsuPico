@@ -18,7 +18,7 @@ from django.core import serializers
 import csv
 import datetime
 import unicodedata
-from PIL import Image
+#from PIL import Image
 import base64
 import sys
 sys.stdout = sys.stderr
