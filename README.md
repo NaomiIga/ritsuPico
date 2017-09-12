@@ -1,1 +1,1 @@
-# ritsuteku
+# ritsupico
