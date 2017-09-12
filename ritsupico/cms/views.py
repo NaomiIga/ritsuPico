@@ -269,7 +269,7 @@ def hint(request):
 
 		hint, hint_num = hint_check(name, tag, next_watch)
 
-		return JsonResponse({"hint":hint''', "hint_num":hint_num'''})
+		return JsonResponse({"hint":hint, "hint_num":hint_num})
 	else:
 		response = HttpResponse()
 		response['msg'] = 'NG'
