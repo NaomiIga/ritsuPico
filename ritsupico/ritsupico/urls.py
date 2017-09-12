@@ -22,7 +22,7 @@ from django.conf import settings
 from cms import views
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^',include('django.contrib.staticfiles.urls')),
     url(r'^pico_login', views.pico_login, name="pico_login"),
     url(r'^hint', views.hint, name="hint"),
