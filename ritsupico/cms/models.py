@@ -7,7 +7,7 @@ from django.utils import timezone
 
 # test
 class Data(models.Model):
-	userdata = models.CharField('username', mac_length = 255, default = 'NAME')
+	userdata = models.CharField('username', max_length = 255, default = 'NAME')
 	whatdata = models.CharField('Datatype', max_length = 255, default = 'DATA')
 
 # User data
