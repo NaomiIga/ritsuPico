@@ -25,6 +25,7 @@ sys.stdout = sys.stderr
 # Create your views here.
 
 #テスト用
+"""
 @csrf_exempt
 def post_test(request):
 	if request.method == 'POST':
@@ -39,7 +40,7 @@ def post_test(request):
 	else:
 		response = HttpResponse()
 		response['msg'] = 'NG'
-
+"""
 
 #ユーザ登録(ダブり確認)する関数、今のままだとこの瞬間が開始時刻
 @csrf_exempt
