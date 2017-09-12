@@ -13,30 +13,24 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import include, url
+#from django.conf.urls import include, url
 from django.contrib import *
-from django.contrib import admin
+#from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 admin.autodiscover()
 from django.conf import settings
-#from cms import views
+from cms import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^',include('django.contrib.staticfiles.urls')),
-    #url(r'^post_test', views.post_test, name="post_test"),
     url(r'^pico_login', views.pico_login, name="pico_login"),
-    #url(r'^shoplog', views.shoplog, name="shoplog"),
-    #url(r'^shop_loading', views.shop_loading, name="shop_loading"),
     url(r'^hint', views.hint, name="hint"),
-    #url(r'^first', views.first, name="first"),
     url(r'^treasure_check', views.treasure_check, name="treasure_check"),
     url(r'^export_csv', views.export_csv, name="export_csv"),
-    #url(r'^map', views.map, name="map"),
     url(r'^finish', views.finish, name="finish"),
     url(r'^key_get', views.key_get, name="key_get"),
     url(r'^recover_check', views.recover_check, name="recover_check"),
     url(r'^recover_data', views.recover_data, name="recover_data"),
-    url(r'^recover_data2', views.recover_data2, name="recover_data2"),
-    #url(r'^question', views.question, name="question")
+    url(r'^recover_data2', views.recover_data2, name="recover_data2")
 ]
