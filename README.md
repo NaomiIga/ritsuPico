@@ -1,1 +1,1 @@
-# ritsupico
+# ritsuPico
