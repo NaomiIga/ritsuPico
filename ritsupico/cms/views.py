@@ -52,8 +52,8 @@ def pico_login(request):
 	if request.method == 'POST':
 		datas = json.loads(request.body)  #追記
 		name = datas["name"]
-		temp = Shop_Beacon.objects.get(shopname = "COUNTER")
-		temp.shop_id += 1
+		temp = Hint.objects.get(treasure_num = 100)
+		temp.hint_num += 1
 		temp.save()
 
 		try:
@@ -61,10 +61,10 @@ def pico_login(request):
 			return HttpResponse(u'error')
 		except User.DoesNotExist:
 			new_data = User.objects.create(
-			user_id = temp.shop_id,
+			user_id = temp.hint_num,
 			username = name,
 			starttime = datetime.datetime.now(),
-			treasures = '0,0,0,0,0,0,0,0,0,0',
+			treasures = '0,0,0,0,0,0',
 			)
 			new_data.save()
 
@@ -84,9 +84,10 @@ def key_get(request):
 	if request.method == 'POST':
 		datas = json.loads(request.body)
 		name = datas["name"]   # ダブルクオート内はディクショナリーのキー
-		major = datas["major"]
-		minor = datas["minor"]
-		beacon = str(major) + "-" + str(minor)
+		#major = datas["major"]
+		#minor = datas["minor"]
+		#beacon = str(major) + "-" + str(minor)
+		beacon = datas["beaconMM"]
 		get_time = datetime.datetime.now()
 		get_time_str = get_time.strftime("%Y-%m-%d %H:%M")
 		key = "{" + beacon + ":" + get_time_str + "}"
@@ -108,13 +109,10 @@ def treasure_check(request):
 	if request.method == 'POST':
 		datas = json.loads(request.body)
 		name = datas["name"]   # ダブルクオート内はディクショナリーのキー
-		major = datas["major"]
-		minor = datas["minor"]
-		print "major"
-		print major
-		print "minor"
-		print minor
-		treasure_number = treasure_num(major,minor)
+		#major = datas["major"]
+		#minor = datas["minor"]
+		treasure_number = datas["treasure_num"]
+		#treasure_number = treasure_num(major,minor)
 
 		update_data = User.objects.get(username = name)
 		watched_hint = UsedHint.objects.get(username = name)
@@ -218,7 +216,7 @@ def treasure_check(request):
 		update_data.save()
 
 		#ここにポイント計算のこと書く？
-		return JsonResponse({'''"treasure":treasure_number, '''"totalpoint":update_data.points, "getpoint":getpointnow}, safe=False)
+		return JsonResponse({"totalpoint":update_data.points, "getpoint":getpointnow}, safe=False)
 	else:
 		response = HttpResponse()
 		response['msg'] = 'NG'
@@ -275,7 +273,7 @@ def hint(request):
 		response['msg'] = 'NG'
 
 #どれだけヒント使ってきたかをチェック
-'''
+
 def hint_check(name, treasureNo, next_watch):
 	data = UsedHint.objects.get(username = name)
 
@@ -492,151 +490,11 @@ def hint_check(name, treasureNo, next_watch):
 				hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
 				hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 3)
 				hint = hint + u'ヒント3\n' + hintdatas.hint_sent + u'\n\n'
-
-	elif treasureNo == 7:
-		hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 1)
-		hint = u'ヒント1\n' + hintdatas.hint_sent + u'\n\n'
-		if next_watch == True and data.hint7_2 == None:
-			hint_num = 2
-			data.hint7_2 = datetime.datetime.now()
-			data.save()
-			hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 2)
-			hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
-		elif next_watch == True and data.hint7_3 == None:
-			hint_num = 3
-			data.hint7_3 = datetime.datetime.now()
-			data.save()
-			hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 2)
-			hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
-			hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 3)
-			hint = hint + u'ヒント3\n' + hintdatas.hint_sent + u'\n'
-		elif next_watch == False:
-			if data.hint7_2 == None:
-				if data.hint7_1 == None:
-					data.hint7_1 = datetime.datetime.now()
-					data.save()
-				hint_num = 1
-				hint = hint
-			elif data.hint7_3 == None:
-				hint_num = 2
-				hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 2)
-				hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
-			else:
-				hint_num = 3
-				hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 2)
-				hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
-				hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 3)
-				hint = hint + u'ヒント3\n' + hintdatas.hint_sent + u'\n\n'
-
-	elif treasureNo == 8:
-		hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 1)
-		hint = u'ヒント1\n' + hintdatas.hint_sent + u'\n\n'
-		if next_watch == True and data.hint8_2 == None:
-			hint_num = 2
-			data.hint8_2 = datetime.datetime.now()
-			data.save()
-			hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 2)
-			hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
-		elif next_watch == True and data.hint8_3 == None:
-			hint_num = 3
-			data.hint8_3 = datetime.datetime.now()
-			data.save()
-			hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 2)
-			hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
-			hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 3)
-			hint = hint + u'ヒント3\n' + hintdatas.hint_sent + u'\n'
-		elif next_watch == False:
-			if data.hint8_2 == None:
-				if data.hint8_1 == None:
-					data.hint8_1 = datetime.datetime.now()
-					data.save()
-				hint_num = 1
-				hint = hint
-			elif data.hint8_3 == None:
-				hint_num = 2
-				hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 2)
-				hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
-			else:
-				hint_num = 3
-				hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 2)
-				hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
-				hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 3)
-				hint = hint + u'ヒント3\n' + hintdatas.hint_sent + u'\n\n'
-
-	elif treasureNo == 9:
-		hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 1)
-		hint = u'ヒント1\n' + hintdatas.hint_sent + u'\n\n'
-		if next_watch == True and data.hint9_2 == None:
-			hint_num = 2
-			data.hint9_2 = datetime.datetime.now()
-			data.save()
-			hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 2)
-			hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
-		elif next_watch == True and data.hint9_3 == None:
-			hint_num = 3
-			data.hint9_3 = datetime.datetime.now()
-			data.save()
-			hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 2)
-			hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
-			hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 3)
-			hint = hint + u'ヒント3\n' + hintdatas.hint_sent + u'\n'
-		elif next_watch == False:
-			if data.hint9_2 == None:
-				if data.hint9_1 == None:
-					data.hint9_1 = datetime.datetime.now()
-					data.save()
-				hint_num = 1
-				hint = hint
-			elif data.hint9_3 == None:
-				hint_num = 2
-				hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 2)
-				hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
-			else:
-				hint_num = 3
-				hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 2)
-				hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
-				hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 3)
-				hint = hint + u'ヒント3\n' + hintdatas.hint_sent + u'\n\n'
-
-	elif treasureNo == 10:
-		hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 1)
-		hint = u'ヒント1\n' + hintdatas.hint_sent + u'\n\n'
-		if next_watch == True and data.hint10_2 == None:
-			hint_num = 2
-			data.hint10_2 = datetime.datetime.now()
-			data.save()
-			hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 2)
-			hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
-		elif next_watch == True and data.hint10_3 == None:
-			hint_num = 3
-			data.hint10_3 = datetime.datetime.now()
-			data.save()
-			hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 2)
-			hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
-			hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 3)
-			hint = hint + u'ヒント3\n' + hintdatas.hint_sent + u'\n'
-		elif next_watch == False:
-			if data.hint10_2 == None:
-				if data.hint10_1 == None:
-					data.hint10_1 = datetime.datetime.now()
-					data.save()
-				hint_num = 1
-				hint = hint
-			elif data.hint10_3 == None:
-				hint_num = 2
-				hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 2)
-				hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
-			else:
-				hint_num = 3
-				hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 2)
-				hint = hint + u'ヒント2\n' + hintdatas.hint_sent + u'\n\n'
-				hintdatas = Hint.objects.get(treasure_num = treasureNo, hint_num = 3)
-				hint = hint + u'ヒント3\n' + hintdatas.hint_sent + u'\n\n'
 	else:
 		print 'error'
 
 	return hint, hint_num
-'''
+
 
 #終了ページでアンケート用にUserIDとPointを返す
 @csrf_exempt
@@ -734,7 +592,7 @@ def recover_data(request):
 def recover_data2(request):
 	if request.method == 'POST':
 
-		shop_beacon = []
+		#shop_beacon = []
 
 		datas = json.loads(request.body)
 		name = datas["name"]
@@ -744,7 +602,7 @@ def recover_data2(request):
 		treasure = UserData.treasures
 		check_list = treasure.split(',')
 		treasure_beacon = []
-		for i in range(0, 10):
+		for i in range(0, 6):
 			if check_list[i] != '0':
 				print i
 				temp = Treasure_Beacon.objects.get(treasure = i+1)
@@ -764,7 +622,7 @@ def recover_data2(request):
 			## ここまで
 
 		#KeyTime = datas[key_time]
-		KeyTime = UserData.key_time
+		#KeyTime = UserData.key_time
 		## ここから書き換え(8/26)
 		print "debug"
 		print len(UserData.key.split(','))
