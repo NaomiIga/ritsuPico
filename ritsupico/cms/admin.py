@@ -10,7 +10,7 @@ class DataAdmin(admin.ModelAdmin):
 admin.site.register(Data, DataAdmin)
 """
 class UserAdmin(admin.ModelAdmin):
-	list_display = ('user_id', 'username', 'starttime', 'finishtime', 'treasures', 'points', 'relationship',)
+	list_display = ('user_id', 'username', 'starttime', 'finishtime', 'treasures', 'points',)
 	list_display_links = ('username',)
 	search_fields = ['user_id', 'username',]
 
