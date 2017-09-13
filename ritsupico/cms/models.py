@@ -55,13 +55,11 @@ class UsedHint(models.Model):
 
 
 # Not Change: treasure and beaconNo wo himoduke
-"""
 class Treasure_Beacon(models.Model):
 	treasure = models.IntegerField('treasure', default = 0)
 	beacon_id = models.IntegerField('beacon', default = 0)
 	major = models.IntegerField('major', default = 0)
 	minor = models.IntegerField('minor', default = 0)
-"""
 
 # Not Change: ikitaiSHOP to beaconNo wo himoduke
 """
