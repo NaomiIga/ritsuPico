@@ -25,10 +25,10 @@ class User(models.Model):
 	treasure4 = models.DateTimeField('treasure4', null=True, blank=True)
 	treasure5 = models.DateTimeField('treasure5', null=True, blank=True)
 	treasure6 = models.DateTimeField('treasure6', null=True, blank=True)
-	key_time = models.FloatField('key_time', default = 0)
+	#key_time = models.FloatField('key_time', default = 0)
 	key = models.CharField('key', max_length = 1023, default = 'key')
-	shopname = models.CharField('shopname', max_length = 255, default = 'SHOP')
-	relationship = models.CharField('relationship', max_length = 255, default = 'relationship')
+	#shopname = models.CharField('shopname', max_length = 255, default = 'SHOP')
+	#relationship = models.CharField('relationship', max_length = 255, default = 'relationship')
 
 # User no hint siyou jyoukyou
 class UsedHint(models.Model):
@@ -51,43 +51,37 @@ class UsedHint(models.Model):
 	hint6_1 = models.DateTimeField('hint6-1', null=True, blank=True)
 	hint6_2 = models.DateTimeField('hint6-2', null=True, blank=True)
 	hint6_3 = models.DateTimeField('hint6-3', null=True, blank=True)
-	hint7_1 = models.DateTimeField('hint7-1', null=True, blank=True)
-	hint7_2 = models.DateTimeField('hint7-2', null=True, blank=True)
-	hint7_3 = models.DateTimeField('hint7-3', null=True, blank=True)
-	hint8_1 = models.DateTimeField('hint8-1', null=True, blank=True)
-	hint8_2 = models.DateTimeField('hint8-2', null=True, blank=True)
-	hint8_3 = models.DateTimeField('hint8-3', null=True, blank=True)
-	hint9_1 = models.DateTimeField('hint9-1', null=True, blank=True)
-	hint9_2 = models.DateTimeField('hint9-2', null=True, blank=True)
-	hint9_3 = models.DateTimeField('hint9-3', null=True, blank=True)
-	hint10_1 = models.DateTimeField('hint10-1', null=True, blank=True)
-	hint10_2 = models.DateTimeField('hint10-2', null=True, blank=True)
-	hint10_3 = models.DateTimeField('hint10-3', null=True, blank=True)
 
 
 
 # Not Change: treasure and beaconNo wo himoduke
+"""
 class Treasure_Beacon(models.Model):
 	treasure = models.IntegerField('treasure', default = 0)
 	beacon_id = models.IntegerField('beacon', default = 0)
 	major = models.IntegerField('major', default = 0)
 	minor = models.IntegerField('minor', default = 0)
+"""
 
 # Not Change: ikitaiSHOP to beaconNo wo himoduke
+"""
 class Shop_Beacon(models.Model):
 	shopname = models.CharField('shopname', max_length = 255, default = 'SHOPNAME')
 	shop_id = models.IntegerField('shop_id', default = 0)
 	major = models.IntegerField('major', default = 0)
 	minor = models.IntegerField('minor', default = 0)
 	floor = models.IntegerField('floor', default = 0)
+"""
 
 # Not Change: beacon list
+"""
 class Beacon(models.Model):
 	beacon_id = models.IntegerField('beacon', default = 0)
 	uuid = models.IntegerField('uuid', default = 0)
 	major = models.IntegerField('major', default = 0)
 	minor = models.IntegerField('minor', default = 0)
 	category = models.CharField('category', max_length = 255, default = 'CATEGORY')
+"""
 
 # Not Change: Hint list
 class Hint(models.Model):
