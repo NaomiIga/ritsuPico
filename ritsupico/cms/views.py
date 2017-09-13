@@ -642,7 +642,7 @@ def recover_data2(request):
 		print treasure_beacon
 
 		#return JsonResponse({"point":point, "treasure":treasure, "treasure_beacon":treasure_beacon, "shop_beacon":shop_beacon, "KeyTime":KeyTime})
-		return JsonResponse({"point":point, "treasure":treasure, "treasure_beacon":treasure_beacon, "KeyTime":KeyTime, "recover_key":key_num})
+		return JsonResponse({"point":point, "treasure":treasure, "treasure_beacon":treasure_beacon, "recover_key":key_num})
 
 
 #csvとして出力する
