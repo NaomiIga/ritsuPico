@@ -3,11 +3,12 @@ from cms.models import *
 #admin.site.register(Data)
 
 # Register your models here.
+"""
 class DataAdmin(admin.ModelAdmin):
 	list_display = ('userdata', 'datavalue',)
 	list_display_links = ('userdata',)
 admin.site.register(Data, DataAdmin)
-
+"""
 class UserAdmin(admin.ModelAdmin):
 	list_display = ('user_id', 'username', 'starttime', 'finishtime', 'treasures', 'points', 'relationship',)
 	list_display_links = ('username',)
