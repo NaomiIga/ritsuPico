@@ -626,7 +626,8 @@ def recover_data2(request):
 		## ここから書き換え(8/26)
 		print "debug"
 		print len(UserData.key.split(','))
-		y = [x for x in check_list if x != '0']
+		#y = [x for x in check_list if x != '0']
+		y = while '0' in check_list: check_list.remove('0')
 		print len(y)
 		if UserData.key == 'key':
 			key_num = 0
