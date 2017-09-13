@@ -6,10 +6,11 @@ from django.utils import timezone
 # Create your models here.
 
 # test
+"""
 class Data(models.Model):
 	userdata = models.CharField('username', max_length = 255, default = 'NAME')
 	whatdata = models.CharField('Datatype', max_length = 255, default = 'DATA')
-
+"""
 # User data
 class User(models.Model):
 	user_id = models.IntegerField('user_id', default = 0)
