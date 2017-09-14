@@ -24,8 +24,8 @@ import datetime
 import unicodedata
 #from PIL import Image
 import base64
-import sys
-sys.stdout = sys.stderr
+#import sys
+#sys.stdout = sys.stderr
 # Create your views here.
 
 #テスト用
@@ -627,9 +627,9 @@ def recover_data2(request):
 		#KeyTime = UserData.key_time
 
 		key_number = UserData.key_num + 1
-		#print key_number
-		sys.stderr.write("message")
-		sys.stderr.write(key_number)
+		print key_number
+		#sys.stderr.write("message")
+		#sys.stderr.write(key_number)
 
 		#print point
 		#print treasure
