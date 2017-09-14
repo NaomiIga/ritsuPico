@@ -24,8 +24,8 @@ import datetime
 import unicodedata
 #from PIL import Image
 import base64
-#import sys
-#sys.stdout = sys.stderr
+import sys
+sys.stdout = sys.stderr
 # Create your views here.
 
 #テスト用
@@ -50,6 +50,7 @@ def post_test(request):
 @csrf_exempt
 def pico_login(request):
 	if request.method == 'POST':
+		print "print!!!!"
 		datas = json.loads(request.body)  #追記
 		name = datas["name"]
 		temp = Hint.objects.get(treasure_num = 100)
