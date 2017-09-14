@@ -26,7 +26,6 @@ import unicodedata
 import base64
 import sys
 sys.stdout = sys.stderr
-import logging
 # Create your views here.
 
 #テスト用
@@ -591,7 +590,7 @@ def recover_data(request):
 		#return JsonResponse({"point":point, "treasure":treasure, "treasure_beacon":treasure_beacon, "shop_beacon":shop_beacon, "KeyTime":KeyTime})
 		return JsonResponse({"point":point, "treasure":treasure, "treasure_beacon":treasure_beacon, "shop_beacon":shop_beacon, "KeyTime":KeyTime, "recover_key":key_num})
 '''
-
+@csrf_exempt
 def recover_data2(request):
 	if request.method == 'POST':
 
