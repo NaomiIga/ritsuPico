@@ -26,6 +26,7 @@ import unicodedata
 import base64
 import sys
 sys.stdout = sys.stderr
+import logging
 # Create your views here.
 
 #テスト用
@@ -626,15 +627,15 @@ def recover_data2(request):
 		#KeyTime = datas[key_time]
 		#KeyTime = UserData.key_time
 
-		key_num = UserData.key_num + 1
-		print >>sys.stderr, key_num
+		key_number = UserData.key_num + 1
+		logging.error(key_number)
 
 		#print point
 		#print treasure
 		print treasure_beacon
 
 		#return JsonResponse({"point":point, "treasure":treasure, "treasure_beacon":treasure_beacon, "shop_beacon":shop_beacon, "KeyTime":KeyTime})
-		return JsonResponse({"point":point, "treasure":treasure, "treasure_beacon":treasure_beacon, "recover_key":key_num})
+		return JsonResponse({"point":point, "treasure":treasure, "treasure_beacon":treasure_beacon, "recover_key":key_number})
 
 
 #csvとして出力する
