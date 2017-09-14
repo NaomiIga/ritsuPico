@@ -50,7 +50,6 @@ def post_test(request):
 @csrf_exempt
 def pico_login(request):
 	if request.method == 'POST':
-		print "print!!!!"
 		datas = json.loads(request.body)  #追記
 		name = datas["name"]
 		temp = Hint.objects.get(treasure_num = 100)
@@ -594,7 +593,7 @@ def recover_data(request):
 @csrf_exempt
 def recover_data2(request):
 	if request.method == 'POST':
-
+		print "@here!!"
 		#shop_beacon = []
 
 		datas = json.loads(request.body)
