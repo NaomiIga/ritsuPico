@@ -609,6 +609,7 @@ def recover_data2(request):
 				temp = Treasure_Beacon.objects.get(treasure = i+1)
 				treasure_beacon.append([temp.major, temp.minor])
 
+		'''
 		#選んだ店の配列を作る
 		#shop_ = UserData.shopname.split(',')
 		#make_map(name, shop_)
@@ -621,6 +622,7 @@ def recover_data2(request):
 			#shopbeacon.append({"major": shop_data.major, "minor": shop_data.minor})
 			shop_beacon.append(str(shop_data.major) + "-" + str(shop_data.minor))
 			## ここまで
+		'''
 
 		#KeyTime = datas[key_time]
 		#KeyTime = UserData.key_time
