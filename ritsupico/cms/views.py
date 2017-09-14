@@ -627,7 +627,9 @@ def recover_data2(request):
 		#KeyTime = UserData.key_time
 
 		key_number = UserData.key_num + 1
-		print key_number
+		#print key_number
+		sys.stderr.write("message")
+		sys.stderr.write(key_number)
 
 		#print point
 		#print treasure
