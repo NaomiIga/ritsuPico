@@ -593,7 +593,6 @@ def recover_data(request):
 @csrf_exempt
 def recover_data2(request):
 	if request.method == 'POST':
-		print "@here!!"
 		#shop_beacon = []
 
 		datas = json.loads(request.body)
@@ -611,8 +610,8 @@ def recover_data2(request):
 				treasure_beacon.append([temp.major, temp.minor])
 
 		#選んだ店の配列を作る
-		shop_ = UserData.shopname.split(',')
-		make_map(name, shop_)
+		#shop_ = UserData.shopname.split(',')
+		#make_map(name, shop_)
 
 		for i in shop_:
 			#print "logging"
@@ -627,6 +626,7 @@ def recover_data2(request):
 		#KeyTime = UserData.key_time
 
 		key_number = UserData.key_num + 1
+		print "key_num"
 		print key_number
 		#sys.stderr.write("message")
 		#sys.stderr.write(key_number)
