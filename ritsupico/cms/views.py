@@ -628,7 +628,7 @@ def recover_data2(request):
 		#KeyTime = UserData.key_time
 
 		key_number = UserData.key_num + 1
-		logging.error(key_number)
+		print key_number
 
 		#print point
 		#print treasure
