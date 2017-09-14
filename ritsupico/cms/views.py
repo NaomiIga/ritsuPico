@@ -99,6 +99,7 @@ def key_get(request):
 			key_data = update_data.key
 			keys = key_data + ", " + key
 		update_data.key = keys
+		update_data.key_num += 1
 		update_data.save()
 	return HttpResponse("OK")
 
@@ -206,6 +207,7 @@ def treasure_check(request):
 		treasure_list = update_data.treasures.split(',')
 		if treasure_list[treasure_number - 1] == '0' and getpointnow != 0:
 			treasure_list[treasure_number - 1] = str(getpointnow)
+			update_data.key_num -= 1
 
 		print "getpointnow"
 		print getpointnow
@@ -623,20 +625,8 @@ def recover_data2(request):
 
 		#KeyTime = datas[key_time]
 		#KeyTime = UserData.key_time
-		## ここから書き換え(8/26)
-		print "debug"
-		print len(UserData.key.split(','))
-		y = [x for x in check_list if x != '0']
-		#y = while '0' in check_list: check_list.remove('0')
-		print len(y)
-		if UserData.key == 'key':
-			key_num = 0
-		else:
-			key_num = len(UserData.key.split(',')) - len(y)
 
-		print key_num
-
-		## 書き換えここまで
+		key_num = UserData.key_num + 1
 
 		#print point
 		#print treasure
