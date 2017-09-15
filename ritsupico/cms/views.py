@@ -629,6 +629,8 @@ def recover_data2(request):
 
 		#key_number = UserData.key_num + 1
 		key_number = UserData.key_num
+		if key_number < 0:
+			key_number = 0
 		print "key_num"
 		print key_number
 		#sys.stderr.write("message")
