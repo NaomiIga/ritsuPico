@@ -113,6 +113,7 @@ def treasure_check(request):
 		major = datas["major"]
 		minor = datas["minor"]
 		treasure_number = treasure_num(major,minor)
+		print treasure_number
 
 		update_data = User.objects.get(username = name)
 		watched_hint = UsedHint.objects.get(username = name)
@@ -208,9 +209,9 @@ def treasure_check(request):
 			treasure_list[treasure_number - 1] = str(getpointnow)
 			update_data.key_num -= 1
 
-		print "getpointnow"
-		print getpointnow
-		print treasure_list
+		#print "getpointnow"
+		#print getpointnow
+		#print treasure_list
 		treasure_list = ','.join(treasure_list)
 		update_data.treasures = treasure_list
 
