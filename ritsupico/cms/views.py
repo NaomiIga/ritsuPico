@@ -627,7 +627,8 @@ def recover_data2(request):
 		#KeyTime = datas[key_time]
 		#KeyTime = UserData.key_time
 
-		key_number = UserData.key_num + 1
+		#key_number = UserData.key_num + 1
+		key_number = UserData.key_num
 		print "key_num"
 		print key_number
 		#sys.stderr.write("message")
