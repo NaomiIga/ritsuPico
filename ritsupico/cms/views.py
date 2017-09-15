@@ -110,10 +110,9 @@ def treasure_check(request):
 	if request.method == 'POST':
 		datas = json.loads(request.body)
 		name = datas["name"]   # ダブルクオート内はディクショナリーのキー
-		#major = datas["major"]
-		#minor = datas["minor"]
-		treasure_number = datas["treasure_num"]
-		#treasure_number = treasure_num(major,minor)
+		major = datas["major"]
+		minor = datas["minor"]
+		treasure_number = treasure_num(major,minor)
 
 		update_data = User.objects.get(username = name)
 		watched_hint = UsedHint.objects.get(username = name)
@@ -224,13 +223,14 @@ def treasure_check(request):
 		response['msg'] = 'NG'
 
 #とんできたビーコンの番号から、どの宝かを識別
-'''
+
 def treasure_num(get_major, get_minor):
 	data = Treasure_Beacon.objects.get(major=get_major, minor=get_minor)
 	treasure_number = data.treasure
 	return treasure_number
 
 # 初めてヒント見たときに呼ばれる
+'''
 @csrf_exempt
 def first(request):
 	if request.method == 'POST':
