@@ -113,6 +113,7 @@ def treasure_check(request):
 		major = datas["major"]
 		minor = datas["minor"]
 		treasure_number = treasure_num(major,minor)
+		print "treasure_number"
 		print treasure_number
 
 		update_data = User.objects.get(username = name)
