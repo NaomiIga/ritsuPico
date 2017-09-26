@@ -214,6 +214,8 @@ def treasure_check(request):
 		treasure_list = ','.join(treasure_list)
 		update_data.treasures = treasure_list
 		key_number = update_data.key_num
+		print "key_number in treasure_check"
+		print key_number
 
 		update_data.save()
 
