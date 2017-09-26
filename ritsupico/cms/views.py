@@ -632,6 +632,8 @@ def recover_data2(request):
 
 		#key_number = UserData.key_num + 1
 		key_number = UserData.key_num
+		UserData.key_num += 1
+		UserData.save()
 		#if key_number < 0:
 			#key_number = 0
 		key_number = key_number + 1
